@@ -3,7 +3,7 @@ bool exist( char** board, int boardSize, int* boardColSize, char* word )
 	char primeiraLetra = word[0];
 	
 	int len = strlen( word );
-	//char palavra[len];
+	
 	char *palavra = malloc( len * sizeof( char ) );
 	int c = 0, f = 0;
 	int letraAtual = 1, aux = 0;
