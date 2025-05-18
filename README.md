@@ -6,7 +6,7 @@
   <p>Trabalho: Leet Code 79 (Mesmo trabalho da M1)</p>
 </h1>
 
-<h2>
+<h2 align="center">
   <img src = "https://github.com/GabrielMartins105/Simulado1-de-Algo/blob/main/sqoq7XY.png?raw=true" />
 </h2>
 
