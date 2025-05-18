@@ -1,0 +1,54 @@
+#include <stdbool.h>
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+bool ramifica( char** board, int boardSize, int* boardColSize, char* word, int linha, int coluna, int indice );
+bool exist( char** board, int boardSize, int* boardColSize, char* word );
+
+bool exist( char** board, int boardSize, int* boardColSize, char* word ) 
+{
+    int linha = 0;
+    int coluna = 0;
+    
+    for( linha = 0; linha < boardSize; linha++ ) 
+    {
+        for( coluna = 0; coluna < boardColSize[0]; coluna++ ) 
+        {
+            if( board[linha][coluna] == word[0] )
+            {
+                if( ramifica( board, boardSize, boardColSize, word, linha, coluna, 0 ) )
+                {
+                    return true;
+                }
+            }
+        }
+    }
+    
+    return false;
+}
+
+bool ramifica( char** board, int boardSize, int* boardColSize, char* word, int linha, int coluna, int indice ) 
+{
+    if( word[indice] == '\0' ) 
+    {
+        return true;
+    }
+
+    if( linha < 0 || linha >= boardSize || coluna < 0 || coluna >= boardColSize[0] || board[linha][coluna] != word[indice] ) 
+    {
+        return false;
+    }
+
+    char caractereTemp = board[linha][coluna];
+    board[linha][coluna] = '\0';
+
+    bool encontrado = ramifica( board, boardSize, boardColSize, word, linha + 1, coluna, indice + 1 ) ||
+                      ramifica( board, boardSize, boardColSize, word, linha - 1, coluna, indice + 1 ) ||
+                      ramifica( board, boardSize, boardColSize, word, linha, coluna + 1, indice + 1 ) ||
+                      ramifica( board, boardSize, boardColSize, word, linha, coluna - 1, indice + 1 );
+                
+    board[linha][coluna] = caractereTemp;
+    
+    return encontrado;
+}
